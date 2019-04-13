@@ -11,6 +11,8 @@ void merge(int A[], int p, int q, int r) {
     p2 = q+1;
     temp = (int *) malloc(tam * sizeof(int));
 
+    int numeroAtual, contagemNumero;
+
     if (temp != NULL) {
         for (i = 0; i < tam; i++) {
             if (!fim1 && !fim2) {
@@ -18,6 +20,16 @@ void merge(int A[], int p, int q, int r) {
                     temp[i] = A[p1++];
                 else
                     temp[i] = A[p2++];
+
+                if (temp[i] == numeroAtual) {
+                    contagemNumero++;
+                } else {
+                    printf("Número: %d \t Quantidade: %d \n", numeroAtual, contagemNumero);
+                    contagemNumero = 0;
+                    numeroAtual = temp[i];
+
+                }
+
                 if (p1 > q)
                     fim1 = 1;
                 if (p2 > r)
@@ -59,15 +71,14 @@ void mostra(int A[], int tam) {
 void main() {
 
     int i, tam, aux;
-    int vetor[] = {17, 42, 9, 33, 87, 92, 25, 12, 19, 62, 48, 16};
+    int vetor[] = {17, 42, 9, 7, 33, 87, 7, 92, 7, 25, 12, 7, 19, 62, 7, 48, 7, 16, 7};
     tam = sizeof(vetor)/sizeof(int);
 
-    mostra(vetor, tam);
+    //mostra(vetor, tam);
     mergesort(vetor, 0, tam);
 
     tam = sizeof(vetor)/sizeof(int);
     mostra(vetor, tam);
 
-    fdsafdsaf
 
 }
