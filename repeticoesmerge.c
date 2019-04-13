@@ -68,18 +68,6 @@ void main() {
     tam = sizeof(vetor)/sizeof(int);
     mostra(vetor, tam);
 
-    int cont = 0;
-    int j;
-
-    for (i = j =0; i < tam-1; i++) {
-        if (vetor[i] != vetor[j])
-            vetor[++j] = vetor[i];
-        else {
-            printf("Contou >> i=%i >> j=%i >> vetor[i]:%i >> vetor[j]:%i \n", i, j, vetor[i], vetor[j]);
-            ++cont;
-        }
-    }
-
-    printf("Repetições: %i \n", cont);
+    fdsafdsaf
 
 }
