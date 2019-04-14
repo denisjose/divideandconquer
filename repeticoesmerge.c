@@ -2,13 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-void merge(int vetor[], int inicio, int meio, int fim, int tamanhototal) {
-
-    int contagem = 0;
-    int numero = 0;
+void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
-    int fim1 = 0, fim2 = 0;
+    int fim1 = 0, fim2 = 0, contador = 0, numero = 0;
 
     tamanho = fim-inicio+1;
     p1 = inicio;
@@ -23,14 +20,14 @@ void merge(int vetor[], int inicio, int meio, int fim, int tamanhototal) {
                 else
                     temp[i] = vetor[p2++];
 
-                if (tamanho == tamanhototal) {
-                    if (temp[i] == numero) {
-                        contagem++;
-                    } else {
+                if (tamanho == tamanhoVetor) {
+                    if (temp[i] == numero)
+                        contador++;
+                    else {
+                        printf("Numero: %d contador: %d\n", numero, contador);
                         numero = temp[i];
-                        contagem = 1;
+                        contador = 1;
                     }
-                    printf("Numero: %d Contagem: %d\n", numero, contagem);
                 }
 
                 if (p1 > meio)
@@ -49,27 +46,26 @@ void merge(int vetor[], int inicio, int meio, int fim, int tamanhototal) {
         for (j=0, k=inicio; j<tamanho; j++, k++) {
             vetor[k] = temp[j];
         }
-        printf("\n");
     }
     free(temp);
 }
 
-void mergesort(int vetor[], int inicio, int fim, int tamanhototal) {
+void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
 
     if (inicio < fim) {
         int meio = floor((inicio+fim)/2);
-        mergesort(vetor, inicio, meio, tamanhototal);
-        mergesort(vetor, meio+1, fim, tamanhototal);
-        merge(vetor, inicio, meio, fim, tamanhototal);
+        mergesort(vetor, inicio, meio, tamanhoVetor);
+        mergesort(vetor, meio+1, fim, tamanhoVetor);
+        merge(vetor, inicio, meio, fim, tamanhoVetor);
     }
 
 }
 
-void mostra(int A[], int tam) {
+void mostra(int vetor[], int tam) {
 
     for (int i=0; i < tam; i++)
         //printf("[%d]\t= %d\n", i, A[i]);
-        printf("%d ", A[i]);
+        printf("%d ", vetor[i]);
     printf("\n");
 
 }

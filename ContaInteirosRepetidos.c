@@ -11,6 +11,7 @@ time_t t1, t2;
 int N;
 
 void Merge(int * vetor, int inicio, int meio, int fim) {
+
     int esq = inicio, dir = meio + 1, aux = 0, tamanho = fim - inicio + 1;
     int * vetAux;
     vetAux = (int * ) malloc(tamanho * sizeof(int));
@@ -43,9 +44,11 @@ void Merge(int * vetor, int inicio, int meio, int fim) {
     }
 
     free(vetAux);
+
 }
 
 void Mergesort(int * vetor, int inicio, int fim) {
+
     int meio;
     if (inicio < fim) {
         meio = floor((inicio + fim) / 2);
@@ -53,9 +56,11 @@ void Mergesort(int * vetor, int inicio, int fim) {
         Mergesort(vetor, meio + 1, fim);
         Merge(vetor, inicio, meio, fim);
     }
+
 }
 
-void executaOperacaoTrivial(int * vetor) {
+void executaOperacaoTrivial(int * vetor, int imprimir) {
+
     int i, j, contar = 0;
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++) {
@@ -63,29 +68,18 @@ void executaOperacaoTrivial(int * vetor) {
                 contar++;
             }
         }
-        printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
+        if (imprimir) printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
         contar = 0;
     }
     return;
-}
 
-void executaOperacaoTrivialsemIMPRESSAO(int * vetor) {
-    int i, j, contar = 0;
-    for (i = 0; i < N; i++) {
-        for (j = 0; j < N; j++) {
-            if (vetor[i] == vetor[j]) {
-                contar++;
-            }
-        }
-        // printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n",vetor[i],i,contar);
-        contar = 0;
-    }
-    return;
 }
 
 void executaOperacaoComMergeSort(int * vetor) {
+
     Mergesort(vetor, 0, N - 1);
     return;
+
 }
 
 int preencheVetorAleatoriamente(int N) {
@@ -97,14 +91,17 @@ int preencheVetorAleatoriamente(int N) {
 }
 
 int imprimirVetorInteiros(int * vetor) {
+
     printf("\nVetor de Inteiros:\n\n");
     for (int i = 0; i < N; i++) {
         //vetor[i]= rand() % N;
         printf("v[%d] = %d\n", i, vetor[i]);
     }
+
 }
 
 int main() {
+
     printf("Digite o tamanho do vetor: \n");
     scanf("%d", &N);
 
@@ -134,10 +131,10 @@ int main() {
         fflush(stdin);
         switch (op) {
         case 1:
-            time( & t1); //inicio da contagem do tempo para realização da operação.
+            time(&t1); //inicio da contagem do tempo para realização da operação.
             //Obs: Aqui só a titulo de exemplo vai depender do operador ditar os números do vetor
             preencheVetorAleatoriamente(N);
-            time( & t2); //fim da contagem do tempo da operação
+            time(&t2); //fim da contagem do tempo da operação
             diferenca = difftime(t2, t1); //diferença em segundos
             printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             check++;
@@ -145,9 +142,9 @@ int main() {
 
         case 2:
             if (check > 0) {
-                time( &t1);
+                time(&t1);
                 imprimirVetorInteiros(vetor);
-                time( &t2);
+                time(&t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -157,8 +154,8 @@ int main() {
         case 3:
             if (check > 0) {
                 time( &t1);
-                executaOperacaoTrivial(vetor);
-                time( &t2);
+                executaOperacaoTrivial(vetor, 1);
+                time(&t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -167,9 +164,9 @@ int main() {
 
         case 4:
             if (check > 0) {
-                time( &t1);
-                executaOperacaoTrivialsemIMPRESSAO(vetor);
-                time( &t2);
+                time(&t1);
+                executaOperacaoTrivial(vetor, 0);
+                time(&t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -211,4 +208,5 @@ int main() {
     getch();
 
     return (1);
+
 }
