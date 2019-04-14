@@ -4,7 +4,6 @@
 
 void merge(int A[], int p, int q, int r) {
 
-
 int contagem = 0;
 int numero = 0;
     int *temp, tam, p1, p2, i, j, k;
@@ -46,7 +45,6 @@ int numero = 0;
         }
         for (j=0, k=p; j<tam; j++, k++) {
             A[k] = temp[j];
-            printf("Teste\n");
         }
     }
     free(temp);
