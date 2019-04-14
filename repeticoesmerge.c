@@ -4,8 +4,8 @@
 
 void merge(int vetor[], int inicio, int meio, int fim, int tamanhototal) {
 
-int contagem = 0;
-int numero = 0;
+    int contagem = 0;
+    int numero = 0;
 
     int *temp, tamanho, p1, p2, i, j, k;
     int fim1 = 0, fim2 = 0;
