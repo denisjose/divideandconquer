@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <math.h>
 #include <time.h> //para calculo de tempo
 
 int * vetor;
@@ -47,7 +48,7 @@ void Merge(int * vetor, int inicio, int meio, int fim) {
 void Mergesort(int * vetor, int inicio, int fim) {
     int meio;
     if (inicio < fim) {
-        meio = (inicio + fim) / 2;
+        meio = floor((inicio + fim) / 2);
         Mergesort(vetor, inicio, meio);
         Mergesort(vetor, meio + 1, fim);
         Merge(vetor, inicio, meio, fim);
@@ -105,7 +106,7 @@ int imprimirVetorInteiros(int * vetor) {
 
 int main() {
     printf("Digite o tamanho do vetor: \n");
-    scanf("%d", & N);
+    scanf("%d", &N);
 
     vetor = (int * ) malloc(N * sizeof(int));
 
@@ -128,7 +129,7 @@ int main() {
         printf("\n8 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
         printf("\nEntre com a opcao desejada: ");
-        scanf("%d", & op);
+        scanf("%d", &op);
         system("cls");
         fflush(stdin);
         switch (op) {
@@ -144,9 +145,9 @@ int main() {
 
         case 2:
             if (check > 0) {
-                time( & t1);
+                time( &t1);
                 imprimirVetorInteiros(vetor);
-                time( & t2);
+                time( &t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -155,9 +156,9 @@ int main() {
 
         case 3:
             if (check > 0) {
-                time( & t1);
+                time( &t1);
                 executaOperacaoTrivial(vetor);
-                time( & t2);
+                time( &t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -166,9 +167,9 @@ int main() {
 
         case 4:
             if (check > 0) {
-                time( & t1);
+                time( &t1);
                 executaOperacaoTrivialsemIMPRESSAO(vetor);
-                time( & t2);
+                time( &t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
                 printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
             } else
@@ -191,7 +192,7 @@ int main() {
 
         case 7:
             printf("Digite o tamanho do vetor: \n");
-            scanf("%d", & N);
+            scanf("%d", &N);
             check = 0;
             vetor = (int * ) malloc(N * sizeof(int));
             break;
