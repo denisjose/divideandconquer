@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void merge(int A[], int p, int q, int r) {
 
+
+int contagem = 0;
+int numero = 0;
     int *temp, tam, p1, p2, i, j, k;
     int fim1 = 0, fim2 = 0;
 
@@ -11,24 +15,21 @@ void merge(int A[], int p, int q, int r) {
     p2 = q+1;
     temp = (int *) malloc(tam * sizeof(int));
 
-    int numeroAtual, contagemNumero;
-
     if (temp != NULL) {
-        for (i = 0; i < tam; i++) {
+        for (i=0; i < tam; i++) {
             if (!fim1 && !fim2) {
                 if (A[p1] < A[p2])
                     temp[i] = A[p1++];
                 else
                     temp[i] = A[p2++];
 
-                if (temp[i] == numeroAtual) {
-                    contagemNumero++;
+                if (temp[i] == numero) {
+                    contagem++;
                 } else {
-                    printf("Número: %d \t Quantidade: %d \n", numeroAtual, contagemNumero);
-                    contagemNumero = 0;
-                    numeroAtual = temp[i];
-
+                    numero = temp[i];
+                    contagem = 1;
                 }
+                //printf("Numero: %d Contagem: %d\n", numero, contagem);
 
                 if (p1 > q)
                     fim1 = 1;
@@ -45,6 +46,7 @@ void merge(int A[], int p, int q, int r) {
         }
         for (j=0, k=p; j<tam; j++, k++) {
             A[k] = temp[j];
+            printf("Teste\n");
         }
     }
     free(temp);
@@ -52,33 +54,30 @@ void merge(int A[], int p, int q, int r) {
 
 void mergesort(int A[], int p, int r) {
 
-    int q;
-
     if (p < r) {
-        q = (int) (p+r)/2;
+        int q = floor((p+r)/2);
         mergesort(A, p, q);
         mergesort(A, q+1, r);
-        merge(A,p,q,r);
+        merge(A, p, q, r);
     }
 }
 
 void mostra(int A[], int tam) {
-    int i;
-    for (i=0;i<tam;i++)
-        printf("[%i]\t= %i\n", i, A[i]);
+
+    for (int i=0; i < tam; i++)
+        //printf("[%d]\t= %d\n", i, A[i]);
+        printf("%d ", A[i]);
+    printf("\n");
+
 }
 
 void main() {
 
-    int i, tam, aux;
-    int vetor[] = {17, 42, 9, 7, 33, 87, 7, 92, 7, 25, 12, 7, 19, 62, 7, 48, 7, 16, 7};
-    tam = sizeof(vetor)/sizeof(int);
+    int vetor[] = {17, 42, 9, 19, 33, 87, 7, 92, 42, 25, 12, 7, 42, 19, 62, 7, 48, 7, 16, 7};
+    int tam = sizeof(vetor)/sizeof(vetor[0]);
 
-    //mostra(vetor, tam);
-    mergesort(vetor, 0, tam);
-
-    tam = sizeof(vetor)/sizeof(int);
     mostra(vetor, tam);
-
+    mergesort(vetor, 0, tam - 1);
+    mostra(vetor, tam);
 
 }
