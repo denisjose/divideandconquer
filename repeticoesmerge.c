@@ -2,62 +2,67 @@
 #include <stdlib.h>
 #include <math.h>
 
-void merge(int A[], int p, int q, int r) {
+void merge(int vetor[], int inicio, int meio, int fim, int tamanhototal) {
 
 int contagem = 0;
 int numero = 0;
-    int *temp, tam, p1, p2, i, j, k;
+
+    int *temp, tamanho, p1, p2, i, j, k;
     int fim1 = 0, fim2 = 0;
 
-    tam = r-p+1;
-    p1 = p;
-    p2 = q+1;
-    temp = (int *) malloc(tam * sizeof(int));
+    tamanho = fim-inicio+1;
+    p1 = inicio;
+    p2 = meio+1;
+    temp = (int *) malloc(tamanho * sizeof(int));
 
     if (temp != NULL) {
-        for (i=0; i < tam; i++) {
+        for (i=0; i < tamanho; i++) {
             if (!fim1 && !fim2) {
-                if (A[p1] < A[p2])
-                    temp[i] = A[p1++];
+                if (vetor[p1] < vetor[p2])
+                    temp[i] = vetor[p1++];
                 else
-                    temp[i] = A[p2++];
+                    temp[i] = vetor[p2++];
 
-                if (temp[i] == numero) {
-                    contagem++;
-                } else {
-                    numero = temp[i];
-                    contagem = 1;
+                if (tamanho == tamanhototal) {
+                    if (temp[i] == numero) {
+                        contagem++;
+                    } else {
+                        numero = temp[i];
+                        contagem = 1;
+                    }
+                    printf("Numero: %d Contagem: %d\n", numero, contagem);
                 }
-                //printf("Numero: %d Contagem: %d\n", numero, contagem);
 
-                if (p1 > q)
+                if (p1 > meio)
                     fim1 = 1;
-                if (p2 > r)
+                if (p2 > fim)
                     fim2 = 1;
             }
             else {
                 if (!fim1)
-                    temp[i] = A[p1++];
+                    temp[i] = vetor[p1++];
                 else
-                    temp[i] = A[p2++];
+                    temp[i] = vetor[p2++];
             }
 
         }
-        for (j=0, k=p; j<tam; j++, k++) {
-            A[k] = temp[j];
+        for (j=0, k=inicio; j<tamanho; j++, k++) {
+            vetor[k] = temp[j];
         }
+        printf("\n");
     }
     free(temp);
 }
 
-void mergesort(int A[], int p, int r) {
+void mergesort(int vetor[], int inicio, int fim, int tamanhototal) {
 
-    if (p < r) {
-        int q = floor((p+r)/2);
-        mergesort(A, p, q);
-        mergesort(A, q+1, r);
-        merge(A, p, q, r);
+    if (inicio < fim) {
+        int meio = floor((inicio+fim)/2);
+        mergesort(vetor, inicio, meio, tamanhototal);
+        mergesort(vetor, meio+1, fim, tamanhototal);
+        merge(vetor, inicio, meio, fim, tamanhototal);
     }
+
 }
 
 void mostra(int A[], int tam) {
@@ -72,10 +77,14 @@ void mostra(int A[], int tam) {
 void main() {
 
     int vetor[] = {17, 42, 9, 19, 33, 87, 7, 92, 42, 25, 12, 7, 42, 19, 62, 7, 48, 7, 16, 7};
-    int tam = sizeof(vetor)/sizeof(vetor[0]);
+    int tamanho = sizeof(vetor)/sizeof(vetor[0]);
 
-    mostra(vetor, tam);
-    mergesort(vetor, 0, tam - 1);
-    mostra(vetor, tam);
+    printf("VETOR INICIAL: ");
+    mostra(vetor, tamanho);
+
+    mergesort(vetor, 0, tamanho - 1, tamanho);
+
+    printf("VETOR ORDENADO: ");
+    mostra(vetor, tamanho);
 
 }
