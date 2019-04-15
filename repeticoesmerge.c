@@ -5,7 +5,7 @@
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
-    int fim1 = 0, fim2 = 0, contador = 0, numero = vetor[0];
+    int fim1 = 0, fim2 = 0, contador = 1;
 
     tamanho = fim-inicio+1;
     p1 = inicio;
@@ -31,41 +31,24 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 else
                     temp[i] = vetor[p2++];
             }
-
-            if ((tamanho == tamanhoVetor)) {
-                if (temp[i] == numero)
-                    contador++;
-                else {
-                    printf("Numero: %d contador: %d\n", numero, contador);
-                    numero = temp[i];
-                    contador = 1;
-                }
-                if (i == tamanho-1) {
-                        printf("NumeroXXX: %d contador: %d\n", numero, contador);
-                }
-            }
-
-
-
         }
+
         for (j=0, k=inicio; j<tamanho; j++, k++) {
             vetor[k] = temp[j];
-            /*
-            if ((tamanho == tamanhoVetor) || (j == tamanho)) {
-                if (temp[k] == numero) {
+
+            if ((tamanho == tamanhoVetor) && (k > 0)) {
+                if (vetor[k] == vetor[k-1]) {
                     contador++;
-                } else {
-                    printf("Numero: %d contador: %d\n", numero, contador);
-                    numero = temp[k];
+                }
+                else {
+                    printf("Num: %d Cont: %d\n", vetor[k-1], contador);
                     contador = 1;
                 }
-            }*/
-
-
-        }/*
+            }
+        }
         if ((tamanho == tamanhoVetor)) {
-                    printf("k:%d Numero: %d contador: %d\n", j, numero, contador);
-            }*/
+            printf("Num: %d Cont: %d\n", vetor[k-1], contador);
+        }
     }
     free(temp);
 }
@@ -92,7 +75,7 @@ void mostra(int vetor[], int tam) {
 
 void main() {
 
-    int vetor[] = {17, 42, 9, 19, 33, 87, 7, 92, 42, 25, 12, 7, 42, 19, 62, 7, 48, 7, 16, 7};
+    int vetor[] = {17, 42, 9, 19, 33, 87, 7, 92, 42, 25, 12, 7, 42, 19, 62, 7, 48, 7, 92, 16, 7,92};
     int tamanho = sizeof(vetor)/sizeof(vetor[0]);
 
     printf("VETOR INICIAL: ");

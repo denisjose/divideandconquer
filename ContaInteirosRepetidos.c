@@ -13,7 +13,7 @@ int N;
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
-    int fim1 = 0, fim2 = 0, contador = 0, numero = 0;
+    int fim1 = 0, fim2 = 0, contador = 1;
 
     tamanho = fim-inicio+1;
     p1 = inicio;
@@ -39,19 +39,22 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 else
                     temp[i] = vetor[p2++];
             }
+        }
 
-            if (tamanho == tamanhoVetor) {
-                if (temp[i] == numero)
+        for (j=0, k=inicio; j<tamanho; j++, k++) {
+            vetor[k] = temp[j];
+            if ((tamanho == tamanhoVetor) && (k > 0)) {
+                if (vetor[k] == vetor[k-1]) {
                     contador++;
+                }
                 else {
-                    printf("Numero: %d contador: %d\n", numero, contador);
-                    numero = temp[i];
+                    //printf("Num: %d Cont: %d\n", vetor[k-1], contador);
                     contador = 1;
                 }
             }
         }
-        for (j=0, k=inicio; j<tamanho; j++, k++) {
-            vetor[k] = temp[j];
+        if ((tamanho == tamanhoVetor)) {
+            //printf("Num: %d Cont: %d\n", vetor[k-1], contador);
         }
     }
     free(temp);
@@ -162,7 +165,7 @@ int main() {
 
         case 3:
             if (check > 0) {
-                time( &t1);
+                time(&t1);
                 executaOperacaoTrivial(vetor, 1);
                 time(&t2);
                 diferenca = difftime(t2, t1); //diferença em segundos
@@ -183,16 +186,25 @@ int main() {
             break;
 
         case 5:
-            if (check > 0)
+            if (check > 0) {
+                time(&t1);
                 executaOperacaoComMergeSort(vetor);
-            else
+                time(&t2);
+                diferenca = difftime(t2, t1); //diferença em segundos
+                imprimirVetorInteiros(vetor);
+                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+            } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 6:
-            if (check > 0)
+            if (check > 0) {
+                time(&t1);
                 executaOperacaoComMergeSort(vetor);
-            else
+                time(&t2);
+                diferenca = difftime(t2, t1); //diferença em segundos
+                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+            } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
