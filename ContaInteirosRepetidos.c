@@ -10,51 +10,60 @@ double diferenca;
 time_t t1, t2;
 int N;
 
-void Merge(int * vetor, int inicio, int meio, int fim) {
+void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
-    int esq = inicio, dir = meio + 1, aux = 0, tamanho = fim - inicio + 1;
-    int * vetAux;
-    vetAux = (int * ) malloc(tamanho * sizeof(int));
+    int *temp, tamanho, p1, p2, i, j, k;
+    int fim1 = 0, fim2 = 0, contador = 0, numero = 0;
 
-    while (esq <= meio && dir <= fim) {
-        if (vetor[esq] < vetor[dir]) {
-            vetAux[aux] = vetor[esq];
-            esq++;
-        } else {
-            vetAux[aux] = vetor[dir];
-            dir++;
+    tamanho = fim-inicio+1;
+    p1 = inicio;
+    p2 = meio+1;
+    temp = (int *) malloc(tamanho * sizeof(int));
+
+    if (temp != NULL) {
+        for (i=0; i < tamanho; i++) {
+            if (!fim1 && !fim2) {
+                if (vetor[p1] < vetor[p2])
+                    temp[i] = vetor[p1++];
+                else
+                    temp[i] = vetor[p2++];
+
+                if (p1 > meio)
+                    fim1 = 1;
+                if (p2 > fim)
+                    fim2 = 1;
+            }
+            else {
+                if (!fim1)
+                    temp[i] = vetor[p1++];
+                else
+                    temp[i] = vetor[p2++];
+            }
+
+            if (tamanho == tamanhoVetor) {
+                if (temp[i] == numero)
+                    contador++;
+                else {
+                    printf("Numero: %d contador: %d\n", numero, contador);
+                    numero = temp[i];
+                    contador = 1;
+                }
+            }
         }
-        aux++;
+        for (j=0, k=inicio; j<tamanho; j++, k++) {
+            vetor[k] = temp[j];
+        }
     }
-
-    while (esq <= meio) { //Caso ainda haja elementos na primeira metade
-        vetAux[aux] = vetor[esq];
-        aux++;
-        esq++;
-    }
-
-    while (dir <= fim) { //Caso ainda haja elementos na segunda metade
-        vetAux[aux] = vetor[dir];
-        aux++;
-        dir++;
-    }
-
-    for (aux = inicio; aux <= fim; aux++) { //Move os elementos de volta para o vetor original
-        vetor[aux] = vetAux[aux - inicio];
-    }
-
-    free(vetAux);
-
+    free(temp);
 }
 
-void Mergesort(int * vetor, int inicio, int fim) {
+void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
 
-    int meio;
     if (inicio < fim) {
-        meio = floor((inicio + fim) / 2);
-        Mergesort(vetor, inicio, meio);
-        Mergesort(vetor, meio + 1, fim);
-        Merge(vetor, inicio, meio, fim);
+        int meio = floor((inicio+fim)/2);
+        mergesort(vetor, inicio, meio, tamanhoVetor);
+        mergesort(vetor, meio+1, fim, tamanhoVetor);
+        merge(vetor, inicio, meio, fim, tamanhoVetor);
     }
 
 }
@@ -77,7 +86,7 @@ void executaOperacaoTrivial(int * vetor, int imprimir) {
 
 void executaOperacaoComMergeSort(int * vetor) {
 
-    Mergesort(vetor, 0, N - 1);
+    mergesort(vetor, 0, N - 1, N);
     return;
 
 }

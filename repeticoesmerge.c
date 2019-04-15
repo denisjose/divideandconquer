@@ -5,7 +5,7 @@
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
-    int fim1 = 0, fim2 = 0, contador = 0, numero = 0;
+    int fim1 = 0, fim2 = 0, contador = 0, numero = vetor[0];
 
     tamanho = fim-inicio+1;
     p1 = inicio;
@@ -20,16 +20,6 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 else
                     temp[i] = vetor[p2++];
 
-                if (tamanho == tamanhoVetor) {
-                    if (temp[i] == numero)
-                        contador++;
-                    else {
-                        printf("Numero: %d contador: %d\n", numero, contador);
-                        numero = temp[i];
-                        contador = 1;
-                    }
-                }
-
                 if (p1 > meio)
                     fim1 = 1;
                 if (p2 > fim)
@@ -40,6 +30,20 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                     temp[i] = vetor[p1++];
                 else
                     temp[i] = vetor[p2++];
+            }
+
+            if (tamanho == tamanhoVetor) {
+                if (i == fim) {
+                    //printf("FIM Valor de i:%d Valor de temp[i]:%d \n", i, temp[i]);
+                }
+                if (temp[i] == numero)
+                    contador++;
+                else {
+                    //printf("Numero: %d contador: %d\n", numero, contador);
+                    numero = temp[i];
+                    contador = 1;
+                }
+                //printf("Numero: %d contador: %d\n", numero, contador);
             }
 
         }
