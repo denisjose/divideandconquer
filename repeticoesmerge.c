@@ -34,16 +34,16 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
             if (tamanho == tamanhoVetor) {
                 if (i == fim) {
-                    //printf("FIM Valor de i:%d Valor de temp[i]:%d \n", i, temp[i]);
+                    printf("FIM Valor de i:%d Valor de temp[i]:%d \n", i, temp[i]);
                 }
                 if (temp[i] == numero)
                     contador++;
                 else {
-                    //printf("Numero: %d contador: %d\n", numero, contador);
+                    printf("Numero: %d contador: %d\n", numero, contador);
                     numero = temp[i];
                     contador = 1;
                 }
-                //printf("Numero: %d contador: %d\n", numero, contador);
+                printf("Numero: %d contador: %d\n", numero, contador);
             }
 
         }
