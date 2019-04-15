@@ -9,7 +9,7 @@ int op, check = 0;
 double diferenca;
 time_t t1, t2;
 int N;
-
+// Commit
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
