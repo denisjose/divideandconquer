@@ -143,67 +143,68 @@ int main() {
         fflush(stdin);
         switch (op) {
         case 1:
-            time(&t1); //inicio da contagem do tempo para realização da operação.
+            t1 = clock(); //inicio da contagem do tempo para realização da operação.
             //Obs: Aqui só a titulo de exemplo vai depender do operador ditar os números do vetor
             preencheVetorAleatoriamente(N);
-            time(&t2); //fim da contagem do tempo da operação
-            diferenca = difftime(t2, t1); //diferença em segundos
-            printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+            t2 = clock(); //fim da contagem do tempo da operação
+            diferenca = t2 - t1; //diferença em milissegundos
+            printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             check++;
             break;
 
         case 2:
             if (check > 0) {
-                time(&t1);
+                t1 = clock();
                 imprimirVetorInteiros(vetor);
-                time(&t2);
-                diferenca = difftime(t2, t1); //diferença em segundos
-                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+                t2 = clock();
+                diferenca = t2 - t1; //diferença em milissegundos
+                printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 3:
             if (check > 0) {
-                time(&t1);
+                t1 = clock();
                 executaOperacaoTrivial(vetor, 1);
-                time(&t2);
-                diferenca = difftime(t2, t1); //diferença em segundos
-                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+                t2 = clock();
+                diferenca = t2 - t1; //diferença em milissegundos
+                printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 4:
             if (check > 0) {
-                time(&t1);
+                t1 = clock();
                 executaOperacaoTrivial(vetor, 0);
-                time(&t2);
-                diferenca = difftime(t2, t1); //diferença em segundos
-                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+                t2 = clock();
+                diferenca = t2 - t1; //diferença em milissegundos
+                printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 5:
             if (check > 0) {
-                time(&t1);
+                t1 = clock();
                 executaOperacaoComMergeSort(vetor);
-                time(&t2);
-                diferenca = difftime(t2, t1); //diferença em segundos
+                t2 = clock();
+                diferenca = t2 - t1; //diferença em milissegundos
                 imprimirVetorInteiros(vetor);
-                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+                printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 6:
             if (check > 0) {
-                time(&t1);
+
+                t1 = clock();
                 executaOperacaoComMergeSort(vetor);
-                time(&t2);
-                diferenca = difftime(t2, t1); //diferença em segundos
-                printf("\nO tempo gasto foi %f: segundos.\n", diferenca);
+                t2 = clock();
+                diferenca = t2 - t1; //diferença em segundos
+                printf("\nO tempo gasto foi %.3f: segundos.\n", (float)diferenca/CLOCKS_PER_SEC);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
