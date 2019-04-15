@@ -61,57 +61,41 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 }
 
 void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
-
     if (inicio < fim) {
         int meio = floor((inicio+fim)/2);
         mergesort(vetor, inicio, meio, tamanhoVetor);
         mergesort(vetor, meio+1, fim, tamanhoVetor);
         merge(vetor, inicio, meio, fim, tamanhoVetor);
     }
-
 }
 
 void executaOperacaoTrivial(int *vetor, int imprimir) {
-
     int i, j, contar = 0;
     for (i = 0; i < N; i++) {
-        for (j = 0; j < N; j++) {
-            if (vetor[i] == vetor[j]) {
+        for (j = 0; j < N; j++)
+            if (vetor[i] == vetor[j])
                 contar++;
-            }
-        }
         if (imprimir) printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
         contar = 0;
     }
     return;
-
 }
 
 void executaOperacaoComMergeSort(int *vetor) {
-
     mergesort(vetor, 0, N - 1, N);
     return;
-
 }
 
 int preencheVetorAleatoriamente(int N) {
-
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++)
         vetor[i] = rand() % N;
-        //printf("v[%d] = %d\n", i, vetor[i]);
-    }
     printf("Vetor devidamente preenchido");
-
 }
 
 int imprimirVetorInteiros(int *vetor) {
-
     printf("\nVetor de Inteiros:\n\n");
-    for (int i = 0; i < N; i++) {
-        //vetor[i]= rand() % N;
+    for (int i = 0; i < N; i++)
         printf("v[%d] = %d\n", i, vetor[i]);
-    }
-
 }
 
 void imprimirTempo(time_t tempo) {
@@ -120,12 +104,11 @@ void imprimirTempo(time_t tempo) {
 
 void alocaVetor() {
     free(vetor);
-    vetor = (int * ) malloc(N * sizeof(int));
+    vetor = (int *) malloc(N * sizeof(int));
 }
 
 int main() {
-
-    printf("Digite o tamanho do vetor: \n");
+    printf("Informe o tamanho do vetor: \n");
     scanf("%d", &N);
 
     //vetor = (int * ) malloc(N * sizeof(int));
@@ -220,7 +203,7 @@ int main() {
             break;
 
         case 7:
-            printf("Digite o tamanho do vetor: \n");
+            printf("Informe o tamanho do vetor: \n");
             scanf("%d", &N);
             check = 0;
             alocaVetor();
@@ -240,5 +223,4 @@ int main() {
     getch();
 
     return (1);
-
 }
