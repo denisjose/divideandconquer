@@ -32,10 +32,7 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                     temp[i] = vetor[p2++];
             }
 
-            if (tamanho == tamanhoVetor) {
-                if (i == fim) {
-                    printf("FIM Valor de i:%d Valor de temp[i]:%d \n", i, temp[i]);
-                }
+            if ((tamanho == tamanhoVetor)) {
                 if (temp[i] == numero)
                     contador++;
                 else {
@@ -43,13 +40,32 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                     numero = temp[i];
                     contador = 1;
                 }
-                printf("Numero: %d contador: %d\n", numero, contador);
+                if (i == tamanho-1) {
+                        printf("NumeroXXX: %d contador: %d\n", numero, contador);
+                }
             }
+
+
 
         }
         for (j=0, k=inicio; j<tamanho; j++, k++) {
             vetor[k] = temp[j];
-        }
+            /*
+            if ((tamanho == tamanhoVetor) || (j == tamanho)) {
+                if (temp[k] == numero) {
+                    contador++;
+                } else {
+                    printf("Numero: %d contador: %d\n", numero, contador);
+                    numero = temp[k];
+                    contador = 1;
+                }
+            }*/
+
+
+        }/*
+        if ((tamanho == tamanhoVetor)) {
+                    printf("k:%d Numero: %d contador: %d\n", j, numero, contador);
+            }*/
     }
     free(temp);
 }
