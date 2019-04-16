@@ -3,12 +3,11 @@
 #include <conio.h>
 #include <locale.h>
 #include <math.h>
-#include <time.h> //para calculo de tempo
+#include <time.h>
 
 int *vetor;
 int op, check = 0, imprimir = 0;
-double diferenca;
-time_t t1, t2;
+clock_t tempo;
 int N;
 
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
@@ -55,7 +54,6 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
             }
         }
         if ((tamanho == tamanhoVetor))
-            //if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
             if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
     }
     free(temp);
@@ -77,7 +75,6 @@ void executaOperacaoTrivial(int *vetor) {
         for (j = 0; j < N; j++)
             if (vetor[i] == vetor[j])
                 contar++;
-        //if (imprimir) printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
         if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", i, vetor[i], contar);
         contar = 0;
     }
@@ -92,7 +89,7 @@ void executaOperacaoComMergeSort(int *vetor) {
 int preencheVetorAleatoriamente(int N) {
     for (int i = 0; i < N; i++)
         vetor[i] = rand() % N;
-    printf("Vetor devidamente preenchido");
+    return 1;
 }
 
 int imprimirVetorInteiros(int *vetor) {
@@ -107,10 +104,43 @@ void imprimirTempo(time_t tempo) {
 
 void alocaVetor() {
     free(vetor);
-    vetor = (int *) malloc(N * sizeof(int));
+    vetor = (int*) malloc(sizeof(int) * N);
 }
 
-int main() {
+void teste(int n) {
+    clock_t t_trivial, t_mergesort;
+
+    N = n;
+    alocaVetor();
+    preencheVetorAleatoriamente(N);
+    imprimir = 0;
+    t_trivial = clock();
+    executaOperacaoTrivial(vetor);
+    t_trivial = clock() - t_trivial;
+    t_mergesort = clock();
+    executaOperacaoComMergeSort(vetor);
+    t_mergesort = clock() - t_mergesort;
+
+    // Imprime os tempos na ordem: N | Trivial | MergeSort
+    printf("%d\t%.3f\t%.3f\n", N, (float)t_trivial/CLOCKS_PER_SEC, (float)t_mergesort/CLOCKS_PER_SEC);
+}
+
+void testar() {
+    double num = 0;
+    for (int i=1; i<=4; i++) {
+        for (int j=1; j<10; j++) {
+            num = j * (pow(10,i));
+            //printf("num:%.f (%d,%d)\n", num, i, j);
+            teste(num);
+        }
+    }
+}
+
+int main(){
+    testar();
+}
+
+int _main() {
     setlocale(LC_ALL,"");
     printf("Informe o tamanho do vetor: \n");
     scanf("%d", &N);
@@ -139,70 +169,70 @@ int main() {
         fflush(stdin);
         switch (op) {
         case 1:
-            t1 = clock(); //inicio da contagem do tempo para realização da operação.
+            tempo = clock(); //inicio da contagem do tempo para realização da operação.
             //Obs: Aqui só a titulo de exemplo vai depender do operador ditar os números do vetor
-            preencheVetorAleatoriamente(N);
-            t2 = clock();
-            diferenca = t2 - t1;
-            imprimirTempo(diferenca);
+            if (preencheVetorAleatoriamente(N)) printf("Vetor devidamente preenchido");
+            tempo = clock() - tempo;
+
+            imprimirTempo(tempo);
             check++;
             break;
 
         case 2:
             if (check > 0) {
-                t1 = clock();
+                tempo = clock();
                 imprimirVetorInteiros(vetor);
-                t2 = clock();
-                diferenca = t2 - t1;
-                imprimirTempo(diferenca);
+                tempo = clock() - tempo;
+
+                imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 3:
             if (check > 0) {
-                t1 = clock();
+                tempo = clock();
                 imprimir = 1;
                 executaOperacaoTrivial(vetor);
-                t2 = clock();
-                diferenca = t2 - t1;
-                imprimirTempo(diferenca);
+                tempo = clock() - tempo;
+
+                imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 4:
             if (check > 0) {
-                t1 = clock();
+                tempo = clock();
                 imprimir = 0;
                 executaOperacaoTrivial(vetor);
-                t2 = clock();
-                diferenca = t2 - t1;
-                imprimirTempo(diferenca);
+                tempo = clock() - tempo;
+
+                imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 5:
             if (check > 0) {
-                t1 = clock();
+                tempo = clock();
                 imprimir = 1;
                 executaOperacaoComMergeSort(vetor);
-                t2 = clock();
-                diferenca = t2 - t1;
-                imprimirTempo(diferenca);
+                tempo = clock() - tempo;
+
+                imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
 
         case 6:
             if (check > 0) {
-                t1 = clock();
+                tempo = clock();
                 imprimir = 0;
                 executaOperacaoComMergeSort(vetor);
-                t2 = clock();
-                diferenca = t2 - t1;
-                imprimirTempo(diferenca);
+                tempo = clock() - tempo;
+
+                imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
             break;
