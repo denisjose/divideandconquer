@@ -127,20 +127,16 @@ void teste(int n) {
 
 void testar() {
     double num = 0;
-    for (int i=1; i<=4; i++) {
+    for (int i=1; i<=5; i++) {
         for (int j=1; j<10; j++) {
             num = j * (pow(10,i));
-            //printf("num:%.f (%d,%d)\n", num, i, j);
-            teste(num);
+            printf("num:%.f (%d,%d)\n", num, i, j);
+            //teste(num);
         }
     }
 }
 
-int main(){
-    testar();
-}
-
-int _main() {
+int main() {
     setlocale(LC_ALL,"");
     printf("Informe o tamanho do vetor: \n");
     scanf("%d", &N);
@@ -161,7 +157,8 @@ int _main() {
         printf("\n5 - Fazer a Contagem de ocorrências pelo Método Otimizado e IMPRIMIR");
         printf("\n6 - Fazer a Contagem de ocorrências pelo Método Otimizado sem imprimir");
         printf("\n7 - Alterar o valor de N (atual N = %d)", N);
-        printf("\n8 - Sair.");
+        printf("\n8 - Realizar testes");
+        printf("\n9 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
         printf("\nEntre com a opção desejada: ");
         scanf("%d", &op);
@@ -245,6 +242,10 @@ int _main() {
             break;
 
         case 8:
+            testar();
+            break;
+
+        case 9:
             exit(0);
             break;
 
@@ -253,7 +254,7 @@ int _main() {
             op = 1;
             break;
         }
-    } while (op > 0 || op < 9);
+    } while (op > 0 || op < 10);
 
     getch();
 
