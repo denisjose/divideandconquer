@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <locale.h>
 #include <math.h>
 #include <time.h> //para calculo de tempo
 
 int *vetor;
-int op, check = 0;
+int op, check = 0, imprimir = 0;
 double diferenca;
 time_t t1, t2;
 int N;
@@ -44,18 +45,16 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
         for (j=0, k=inicio; j<tamanho; j++, k++) {
             vetor[k] = temp[j];
             if ((tamanho == tamanhoVetor) && (k > 0)) {
-                if (vetor[k] == vetor[k-1]) {
+                if (vetor[k] == vetor[k-1])
                     contador++;
-                }
                 else {
-                    //printf("Num: %d Cont: %d\n", vetor[k-1], contador);
+                    if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
                     contador = 1;
                 }
             }
         }
-        if ((tamanho == tamanhoVetor)) {
-            //printf("Num: %d Cont: %d\n", vetor[k-1], contador);
-        }
+        if ((tamanho == tamanhoVetor))
+            if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
     }
     free(temp);
 }
@@ -69,7 +68,7 @@ void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
     }
 }
 
-void executaOperacaoTrivial(int *vetor, int imprimir) {
+void executaOperacaoTrivial(int *vetor) {
     int i, j, contar = 0;
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++)
@@ -108,12 +107,10 @@ void alocaVetor() {
 }
 
 int main() {
+    setlocale(LC_ALL,"");
     printf("Informe o tamanho do vetor: \n");
     scanf("%d", &N);
-
-    //vetor = (int * ) malloc(N * sizeof(int));
     alocaVetor();
-
     srand(time(NULL));
     /*  srand(time(NULL)) objetiva inicializar o gerador de números aleatórios
         com o valor da função time(NULL). Este por sua vez, é calculado
@@ -123,16 +120,16 @@ int main() {
 
     do {
         printf("\n------------------------------------MENU---------------------------------------");
-        printf("\n1 - Preencher o Vetor de Inteiros.");
-        printf("\n2 - Imprimir o Vetor de Inteiros.");
-        printf("\n3 - Fazer a Contagem de ocorrencias pelo Metodo Trivial e IMPRIMIR.");
-        printf("\n4 - Fazer a Contagem de ocorrencias pelo Metodo Trivial sem imprimir.");
-        printf("\n5 - Fazer a Contagem de ocorrencias pelo Metodo Otimizado e IMPRIMIR.");
-        printf("\n6 - Fazer a Contagem de ocorrencias pelo Metodo Otimizado sem imprimir.");
-        printf("\n7 - Alterar o valor de N.");
+        printf("\n1 - Preencher o Vetor de Inteiros");
+        printf("\n2 - Imprimir o Vetor de Inteiros");
+        printf("\n3 - Fazer a Contagem de ocorrências pelo Método Trivial e IMPRIMIR");
+        printf("\n4 - Fazer a Contagem de ocorrências pelo Método Trivial sem imprimir");
+        printf("\n5 - Fazer a Contagem de ocorrências pelo Método Otimizado e IMPRIMIR");
+        printf("\n6 - Fazer a Contagem de ocorrências pelo Método Otimizado sem imprimir");
+        printf("\n7 - Alterar o valor de N (atual N = %d)", N);
         printf("\n8 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\nEntre com a opcao desejada: ");
+        printf("\nEntre com a opção desejada: ");
         scanf("%d", &op);
         system("cls");
         fflush(stdin);
@@ -161,7 +158,8 @@ int main() {
         case 3:
             if (check > 0) {
                 t1 = clock();
-                executaOperacaoTrivial(vetor, 1);
+                imprimir = 1;
+                executaOperacaoTrivial(vetor);
                 t2 = clock();
                 diferenca = t2 - t1;
                 imprimirTempo(diferenca);
@@ -172,7 +170,8 @@ int main() {
         case 4:
             if (check > 0) {
                 t1 = clock();
-                executaOperacaoTrivial(vetor, 0);
+                imprimir = 0;
+                executaOperacaoTrivial(vetor);
                 t2 = clock();
                 diferenca = t2 - t1;
                 imprimirTempo(diferenca);
@@ -183,6 +182,7 @@ int main() {
         case 5:
             if (check > 0) {
                 t1 = clock();
+                imprimir = 1;
                 executaOperacaoComMergeSort(vetor);
                 t2 = clock();
                 diferenca = t2 - t1;
@@ -194,6 +194,7 @@ int main() {
         case 6:
             if (check > 0) {
                 t1 = clock();
+                imprimir = 0;
                 executaOperacaoComMergeSort(vetor);
                 t2 = clock();
                 diferenca = t2 - t1;
@@ -214,7 +215,7 @@ int main() {
             break;
 
         default:
-            printf("Opcao invalida");
+            printf("Opção inválida");
             op = 1;
             break;
         }
