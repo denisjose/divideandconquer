@@ -14,7 +14,7 @@ int N;
 void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
 
     int *temp, tamanho, p1, p2, i, j, k;
-    int fim1 = 0, fim2 = 0, contador = 1;
+    int fim1 = 0, fim2 = 0, contar = 1;
 
     tamanho = fim-inicio+1;
     p1 = inicio;
@@ -46,15 +46,17 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
             vetor[k] = temp[j];
             if ((tamanho == tamanhoVetor) && (k > 0)) {
                 if (vetor[k] == vetor[k-1])
-                    contador++;
+                    contar++;
                 else {
-                    if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
-                    contador = 1;
+                    //if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
+                    if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
+                    contar = 1;
                 }
             }
         }
         if ((tamanho == tamanhoVetor))
-            if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
+            //if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
+            if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
     }
     free(temp);
 }
@@ -70,11 +72,13 @@ void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
 
 void executaOperacaoTrivial(int *vetor) {
     int i, j, contar = 0;
+    if (imprimir) printf("\nVetor de Inteiros:\n\n");
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++)
             if (vetor[i] == vetor[j])
                 contar++;
-        if (imprimir) printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
+        //if (imprimir) printf("O numero de vezes que o elemento %d e que esta na posicao vetor[%d] aparece e: %d\n", vetor[i], i, contar);
+        if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", i, vetor[i], contar);
         contar = 0;
     }
     return;
