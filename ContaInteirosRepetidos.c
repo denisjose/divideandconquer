@@ -47,13 +47,13 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 if (vetor[k] == vetor[k-1])
                     contar++;
                 else {
-                    if (imprimir) printf("v[%d] = %d \t Ocorr�ncias: %d\n", k-1, vetor[k-1], contar);
+                    if (imprimir) printf("v[%d] = %d \t Ocorrencias: %d\n", k-1, vetor[k-1], contar);
                     contar = 1;
                 }
             }
         }
         if ((tamanho == tamanhoVetor))
-            if (imprimir) printf("v[%d] = %d \t Ocorr�ncias: %d\n", k-1, vetor[k-1], contar);
+            if (imprimir) printf("v[%d] = %d \t Ocorrencias: %d\n", k-1, vetor[k-1], contar);
     }
     free(temp);
 }
@@ -70,11 +70,11 @@ void mergesort(int *vetor, int inicio, int fim, int tamanhoVetor) {
 void executaOperacaoTrivial(int *vetor) {
     int i, j, contar = 0;
     if (imprimir) printf("\nVetor de Inteiros:\n\n");
-    for (i = 0; i < N; i++) {
-        for (j = 0; j < N; j++)
+    for (i=0; i<N; i++) {
+        for (j=0; j<N; j++)
             if (vetor[i] == vetor[j])
                 contar++;
-        if (imprimir) printf("v[%d] = %d \t Ocorr�ncias: %d\n", i, vetor[i], contar);
+        if (imprimir) printf("v[%d] = %d \t Ocorrencias: %d\n", i, vetor[i], contar);
         contar = 0;
     }
     return;
@@ -151,22 +151,22 @@ int main() {
         printf("\n------------------------------------MENU---------------------------------------");
         printf("\n1 - Preencher o Vetor de Inteiros");
         printf("\n2 - Imprimir o Vetor de Inteiros");
-        printf("\n3 - Fazer a Contagem de ocorr�ncias pelo M�todo Trivial e IMPRIMIR");
-        printf("\n4 - Fazer a Contagem de ocorr�ncias pelo M�todo Trivial sem imprimir");
-        printf("\n5 - Fazer a Contagem de ocorr�ncias pelo M�todo Otimizado e IMPRIMIR");
-        printf("\n6 - Fazer a Contagem de ocorr�ncias pelo M�todo Otimizado sem imprimir");
+        printf("\n3 - Fazer a Contagem de ocorrencias pelo Método Trivial e IMPRIMIR");
+        printf("\n4 - Fazer a Contagem de ocorrencias pelo Método Trivial sem imprimir");
+        printf("\n5 - Fazer a Contagem de ocorrencias pelo Método Otimizado e IMPRIMIR");
+        printf("\n6 - Fazer a Contagem de ocorrencias pelo Método Otimizado sem imprimir");
         printf("\n7 - Alterar o valor de N (atual N = %d)", N);
         printf("\n8 - Realizar testes");
         printf("\n9 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\nEntre com a op��o desejada: ");
+        printf("\nEntre com a opção desejada: ");
         scanf("%d", &op);
         system("cls");
         fflush(stdin);
         switch (op) {
         case 1:
-            tempo = clock(); //inicio da contagem do tempo para realiza��o da opera��o.
-            //Obs: Aqui s� a titulo de exemplo vai depender do operador ditar os n�meros do vetor
+            tempo = clock(); //início da contagem do tempo para realização da operação.
+            //Obs: Aqui só a título de exemplo vai depender do operador ditar os números do vetor
             if (preencheVetorAleatoriamente(N)) printf("Vetor devidamente preenchido");
             tempo = clock() - tempo;
 
@@ -249,7 +249,7 @@ int main() {
             break;
 
         default:
-            printf("Op��o inv�lida");
+            printf("Opção invalida");
             op = 1;
             break;
         }
