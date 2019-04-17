@@ -47,13 +47,13 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 if (vetor[k] == vetor[k-1])
                     contar++;
                 else {
-                    if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
+                    if (imprimir) printf("v[%d] = %d \t Ocorrï¿½ncias: %d\n", k-1, vetor[k-1], contar);
                     contar = 1;
                 }
             }
         }
         if ((tamanho == tamanhoVetor))
-            if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
+            if (imprimir) printf("v[%d] = %d \t Ocorrï¿½ncias: %d\n", k-1, vetor[k-1], contar);
     }
     free(temp);
 }
@@ -74,7 +74,7 @@ void executaOperacaoTrivial(int *vetor) {
         for (j = 0; j < N; j++)
             if (vetor[i] == vetor[j])
                 contar++;
-        if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", i, vetor[i], contar);
+        if (imprimir) printf("v[%d] = %d \t Ocorrï¿½ncias: %d\n", i, vetor[i], contar);
         contar = 0;
     }
     return;
@@ -141,32 +141,32 @@ int main() {
     scanf("%d", &N);
     alocaVetor();
     srand(time(NULL));
-    /*  srand(time(NULL)) objetiva inicializar o gerador de números aleatórios
-        com o valor da função time(NULL). Este por sua vez, é calculado
+    /*  srand(time(NULL)) objetiva inicializar o gerador de nï¿½meros aleatï¿½rios
+        com o valor da funï¿½ï¿½o time(NULL). Este por sua vez, ï¿½ calculado
         como sendo o total de segundos passados desde 1 de janeiro de 1970
-        até a data atual.
-        Desta forma, a cada execução o valor da "semente" será diferente.  */
+        atï¿½ a data atual.
+        Desta forma, a cada execuï¿½ï¿½o o valor da "semente" serï¿½ diferente.  */
 
     do {
         printf("\n------------------------------------MENU---------------------------------------");
         printf("\n1 - Preencher o Vetor de Inteiros");
         printf("\n2 - Imprimir o Vetor de Inteiros");
-        printf("\n3 - Fazer a Contagem de ocorrências pelo Método Trivial e IMPRIMIR");
-        printf("\n4 - Fazer a Contagem de ocorrências pelo Método Trivial sem imprimir");
-        printf("\n5 - Fazer a Contagem de ocorrências pelo Método Otimizado e IMPRIMIR");
-        printf("\n6 - Fazer a Contagem de ocorrências pelo Método Otimizado sem imprimir");
+        printf("\n3 - Fazer a Contagem de ocorrï¿½ncias pelo Mï¿½todo Trivial e IMPRIMIR");
+        printf("\n4 - Fazer a Contagem de ocorrï¿½ncias pelo Mï¿½todo Trivial sem imprimir");
+        printf("\n5 - Fazer a Contagem de ocorrï¿½ncias pelo Mï¿½todo Otimizado e IMPRIMIR");
+        printf("\n6 - Fazer a Contagem de ocorrï¿½ncias pelo Mï¿½todo Otimizado sem imprimir");
         printf("\n7 - Alterar o valor de N (atual N = %d)", N);
         printf("\n8 - Realizar testes");
         printf("\n9 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\nEntre com a opção desejada: ");
+        printf("\nEntre com a opï¿½ï¿½o desejada: ");
         scanf("%d", &op);
         system("cls");
         fflush(stdin);
         switch (op) {
         case 1:
-            tempo = clock(); //inicio da contagem do tempo para realização da operação.
-            //Obs: Aqui só a titulo de exemplo vai depender do operador ditar os números do vetor
+            tempo = clock(); //inicio da contagem do tempo para realizaï¿½ï¿½o da operaï¿½ï¿½o.
+            //Obs: Aqui sï¿½ a titulo de exemplo vai depender do operador ditar os nï¿½meros do vetor
             if (preencheVetorAleatoriamente(N)) printf("Vetor devidamente preenchido");
             tempo = clock() - tempo;
 
@@ -249,7 +249,7 @@ int main() {
             break;
 
         default:
-            printf("Opção inválida");
+            printf("Opï¿½ï¿½o invï¿½lida");
             op = 1;
             break;
         }
