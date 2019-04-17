@@ -15,6 +15,7 @@ http://www.cse.iitd.ac.in/~mohanty/col106/Resources/mergesort.pdf
 https://introcs.cs.princeton.edu/java/42sort/
 https://books.google.com.br/books?id=x3MzDwAAQBAJ&pg=PT733&lpg=PT733&dq=Element+distinctness+problem+mergesort&source=bl&ots=q-aJVTU1sU&sig=ACfU3U0GsWFkzXI97rV6eMRoaw20CRoJSA&hl=pt-BR&sa=X&ved=2ahUKEwjr6pasgtPhAhWkHbkGHTNIAxAQ6AEwCHoECAkQAQ#v=onepage&q=Element%20distinctness%20problem%20mergesort&f=false
 http://www.ic.unicamp.br/~rezende/ensino/mo619/Lubiw,ALowerBoundForIntegerElementDistinctness.pdf
+https://github.com/vhbsouza/Benchmark-Algoritmos-de-Ordenacao/blob/master/C%C3%B3digo%20Fonte%20-%20Benchmark%20-%20Algoritmos%20de%20Ordena%C3%A7%C3%A3o.c
 
 
 
@@ -26,3 +27,9 @@ Detecting Duplicates Using Divide and Conquer - Merge Sort
 Running times of algorithms with Recursive calls can be described using recurrences
 
 A recurrence is an equation or inequality that describes a function in terms of its value on smaller inputs
+
+
+
+Tempo executando em todos os mergesort&source
+50 milhões  = 19,606 | 22,102
+200 milhões = 82,264 | 98,890

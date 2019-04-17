@@ -21,7 +21,7 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
     temp = (int *) malloc(tamanho * sizeof(int));
 
     if (temp != NULL) {
-        for (i=0; i < tamanho; i++) {
+        for (i=0; i<tamanho; i++) {
             if (!fim1 && !fim2) {
                 if (vetor[p1] < vetor[p2])
                     temp[i] = vetor[p1++];
@@ -47,7 +47,6 @@ void merge(int *vetor, int inicio, int meio, int fim, int tamanhoVetor) {
                 if (vetor[k] == vetor[k-1])
                     contar++;
                 else {
-                    //if (imprimir) printf("Num: %d Cont: %d\n", vetor[k-1], contador);
                     if (imprimir) printf("v[%d] = %d \t Ocorrências: %d\n", k-1, vetor[k-1], contar);
                     contar = 1;
                 }
