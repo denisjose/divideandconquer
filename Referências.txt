@@ -18,6 +18,9 @@ http://www.ic.unicamp.br/~rezende/ensino/mo619/Lubiw,ALowerBoundForIntegerElemen
 https://github.com/vhbsouza/Benchmark-Algoritmos-de-Ordenacao/blob/master/C%C3%B3digo%20Fonte%20-%20Benchmark%20-%20Algoritmos%20de%20Ordena%C3%A7%C3%A3o.c
 
 
+https://web.cs.dal.ca/~mhe/csci3110/handouts/lecture5.htm
+
+
 
 
 Count number of occurrences (or frequency)
@@ -30,6 +33,11 @@ A recurrence is an equation or inequality that describes a function in terms of 
 
 
 
-Tempo executando em todos os mergesort&source
+Tempo executando em todos os mergesort
 50 milhões  = 19,606 | 22,102
 200 milhões = 82,264 | 98,890
+
+
+Referências para os slides
+
+https://web.cs.dal.ca/~mhe/csci3110/handouts/lecture5.htm
