@@ -41,3 +41,4 @@ Tempo executando em todos os mergesort
 Referências para os slides
 
 https://web.cs.dal.ca/~mhe/csci3110/handouts/lecture5.htm
+https://pt.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
