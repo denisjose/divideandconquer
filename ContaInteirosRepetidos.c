@@ -124,7 +124,7 @@ void teste(int n) {
     printf("%d\t%.3f\t%.3f\n", N, (float)t_trivial/CLOCKS_PER_SEC, (float)t_mergesort/CLOCKS_PER_SEC);
 }
 
-void testar() {
+void _testar() {
     double num = 0;
     for (int i=1; i<=5; i++) {
         for (int j=1; j<10; j++) {
@@ -134,6 +134,15 @@ void testar() {
         }
     }
 }
+
+void testar() {
+    double num = 0;
+    for (int i=1; i<=100; i++) {
+            num = i * 10000;
+            //printf("num:%.f\n", num);
+            teste(num);
+        }
+    }
 
 int main() {
     setlocale(LC_ALL,"");
