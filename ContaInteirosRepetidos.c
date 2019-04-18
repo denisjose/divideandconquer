@@ -129,8 +129,8 @@ void _testar() {
     for (int i=1; i<=5; i++) {
         for (int j=1; j<10; j++) {
             num = j * (pow(10,i));
-            printf("num:%.f (%d,%d)\n", num, i, j);
-            //teste(num);
+            //printf("num:%.f (%d,%d)\n", num, i, j);
+            teste(num);
         }
     }
 }
@@ -160,15 +160,15 @@ int main() {
         printf("\n------------------------------------MENU---------------------------------------");
         printf("\n1 - Preencher o Vetor de Inteiros");
         printf("\n2 - Imprimir o Vetor de Inteiros");
-        printf("\n3 - Fazer a Contagem de ocorrencias pelo Método Trivial e IMPRIMIR");
-        printf("\n4 - Fazer a Contagem de ocorrencias pelo Método Trivial sem imprimir");
-        printf("\n5 - Fazer a Contagem de ocorrencias pelo Método Otimizado e IMPRIMIR");
-        printf("\n6 - Fazer a Contagem de ocorrencias pelo Método Otimizado sem imprimir");
+        printf("\n3 - Fazer a Contagem de ocorrencias pelo Metodo Trivial e IMPRIMIR");
+        printf("\n4 - Fazer a Contagem de ocorrencias pelo Metodo Trivial sem imprimir");
+        printf("\n5 - Fazer a Contagem de ocorrencias pelo Metodo Otimizado e IMPRIMIR");
+        printf("\n6 - Fazer a Contagem de ocorrencias pelo Metodo Otimizado sem imprimir");
         printf("\n7 - Alterar o valor de N (atual N = %d)", N);
         printf("\n8 - Realizar testes");
         printf("\n9 - Sair.");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\nEntre com a opção desejada: ");
+        printf("\nEntre com a opcao desejada: ");
         scanf("%d", &op);
         system("cls");
         fflush(stdin);
@@ -212,7 +212,6 @@ int main() {
                 imprimir = 0;
                 executaOperacaoTrivial(vetor);
                 tempo = clock() - tempo;
-
                 imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
@@ -224,7 +223,6 @@ int main() {
                 imprimir = 1;
                 executaOperacaoComMergeSort(vetor);
                 tempo = clock() - tempo;
-
                 imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
@@ -236,7 +234,6 @@ int main() {
                 imprimir = 0;
                 executaOperacaoComMergeSort(vetor);
                 tempo = clock() - tempo;
-
                 imprimirTempo(tempo);
             } else
                 printf("\nPrecisa-se preencher o Vetor de Inteiros. Digite 1\n");
@@ -258,7 +255,7 @@ int main() {
             break;
 
         default:
-            printf("Opção invalida");
+            printf("Opcao invalida");
             op = 1;
             break;
         }
